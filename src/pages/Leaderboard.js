@@ -8,11 +8,6 @@ const Leaderboard = () => {
       <Navbar />
       <h1 className="text-white self-center text-[1.5rem]">Leaderboard</h1>
       <div>
-        <div className="w-full flex justify-between pl-44 pr-44">
-          <h3>Rank</h3>
-          <h3>Name</h3>
-          <h3>Votes</h3>
-        </div>
         <LeaderboardComponent />
       </div>
     </div>

@@ -38,7 +38,7 @@ const LeaderboardComponent = () => {
 
   return (
     <div className="grid grid-flow-row h-screen w-full mt-7">
-      <div className="grid grid-flow-col justify-between mx-7">
+      <div className="grid grid-flow-col justify-evenly lg:justify-between mx-7">
         <h3>Contestant</h3>
         <h3>Votes</h3>
         <h3>Rank</h3>

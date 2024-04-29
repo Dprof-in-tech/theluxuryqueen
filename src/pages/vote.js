@@ -48,8 +48,8 @@ const Vote = () => {
             <Navbar />
             <h1 className="text-white text-[1.2rem]">Vote for {name}</h1>
             {/* {picture &&  */}
-            <div className="w-[50%] h-[420px] flex items-center justify-center mt-8">
-                <div className="w-[50%] h-full relative">
+            <div className=" w-full lg:w-[50%] h-[fit-content] lg:h-[420px] flex flex-col lg:flex-row items-center justify-center mt-8">
+                <div className="w-[85%] lg:w-[50%] h-full relative">
                     <img
                         className="h-full w-full"
                         src={picture}
@@ -61,7 +61,7 @@ const Vote = () => {
                         <p>Amount: {ramount}</p>
                     </div>
                 </div>
-                <div className="p-4 flex flex-col items-center justify-center gap-2 w-[50%] h-full">
+                <div className="p-4 flex flex-col items-center justify-center gap-2 w-[85%] lg:w-[50%] h-full">
                     <div className="w-full">
                         <label className="text-white">Name</label>
                         <input
