@@ -9,13 +9,12 @@ const Vote = () => {
     const name = searchParams.get("name");
     const picture = searchParams.get("picture");
 
-    const publicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
-    console.log(publicKey);
     const [email, setEmail] = useState('');
     const [cname, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [votes, setVotes] = useState('');
-    const amount = votes * 100;
+    const ramount = votes * 100;
+    const amount = votes * 100 * 100;
 
     const resetForm = () => {
         setEmail('');
@@ -31,7 +30,7 @@ const Vote = () => {
             cname,
             phone,
         },
-        publicKey,
+        publicKey: 'pk_test_5dc6d58da9ce734e8be51296b612237ef3cf938e',
         text: 'Vote Now',
         onSuccess: ({ reference }) => {
             alert(
@@ -57,7 +56,7 @@ const Vote = () => {
                     <div className="text-white absolute bottom-0 bg-black px-6 py-3">
                         <p className="">{name}</p>
                         <p className="">NGN 100 / vote</p>
-                        <p>Amount: {amount}</p>
+                        <p>Amount: {ramount}</p>
                     </div>
                 </div>
                 <div className="p-4 flex flex-col items-center justify-center gap-2 w-[50%] h-full">
