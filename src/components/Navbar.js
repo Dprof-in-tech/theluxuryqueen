@@ -12,7 +12,7 @@ function Navbar(){
             <ul className="flex flex-row gap-4 justify-center items-center">
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='/contestants'>Contestants</Link></li>
-                <li><Link to='/leaderboard'>Leaderboard</Link></li>
+                {/* <li><Link to='/leaderboard'>Leaderboard</Link></li> */}
                 <li><Link to='/'>Contact</Link></li>
             </ul>
         </nav>
