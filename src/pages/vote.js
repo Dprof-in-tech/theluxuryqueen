@@ -23,6 +23,7 @@ const Vote = () => {
         setVotes(1);
     };
 
+  
     const componentProps = {
         email,
         amount,
@@ -33,10 +34,11 @@ const Vote = () => {
         publicKey: 'pk_test_5dc6d58da9ce734e8be51296b612237ef3cf938e',
         text: 'Vote Now',
         onSuccess: ({ reference }) => {
-            alert(
-                `Your vote was successful! Transaction reference: ${reference}`
-            );
+            // alert(
+            //     `Your vote was successful! Transaction reference: ${reference}`
+            // );
             resetForm();
+            window.location.href=`/leaderboard?votes=${votes}&name=${name}`;
         },
         onClose: () => alert("Wait! she needs this vote, don't go!!!!"),
     };
