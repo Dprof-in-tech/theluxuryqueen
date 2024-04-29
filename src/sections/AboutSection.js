@@ -12,7 +12,7 @@ function AboutSection() {
                     </h2>
                     <button className="bg-black border-white border w-[50%] text-white px-4 py-2 rounded-lg mt-4">Register Now</button>
                 </span>
-                <div className=" w-[85%] h-[360px] lg:w-[50%] lg:h-[500px]">
+                <div className=" w-[90%] h-[360px] lg:w-[50%] lg:h-[500px]">
                     <img src={About} alt="What we do" className="w-full h-full object-cover" />
                 </div>
             </div>
