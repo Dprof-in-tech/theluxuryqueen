@@ -1,80 +1,84 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../firebase";
+import React, { useEffect, useState } from 'react';
+import { collection, getDocs, updateDoc, doc, setDoc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
 const LeaderboardComponent = () => {
   const [contestants, setContestants] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchContestantData = async () => {
+    const fetchContestants = async () => {
       try {
-        const contestantsRef = db.collection("contestants");
-        const snapshot = await contestantsRef.get();
-
-        if (!snapshot.empty) {
-          const fetchedContestants = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setContestants(fetchedContestants);
-        } else {
-          console.log('No contestants found in Firestore.');
-        }
+        const querySnapshot = await getDocs(collection(db, 'leaderboard'));
+        const fetchedContestants = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setContestants(fetchedContestants);
       } catch (error) {
-        console.error('Error fetching contestants from Firestore:', error);
+        console.error('Error fetching contestants:', error);
       }
     };
 
-    fetchContestantData();
+    fetchContestants();
+  }, []);
 
-    const parseUrlParams = () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const name = urlParams.get("name");
-      const vote = parseInt(urlParams.get("votes"), 10) || 0;
-      return { name, vote };
-    };
+  const parseUrlParams = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const votes = parseInt(urlParams.get('votes'), 10) || 0;
+    return { name, votes };
+  };
 
-    const updateData = async ({ name, vote }) => {
-      try {
-        const contestantsRef = db.collection("contestants");
-        const snapshot = await contestantsRef.where("name", "==", name).get();
+  const updateContestantVotes = async (name, votes) => {
+    try {
+      const contestantsRef = collection(db, 'leaderboard');
+      const docRef = doc(contestantsRef, name.toLowerCase());
+      const docSnapshot = await getDoc(docRef);
 
-        if (snapshot.empty) {
-          // If contestant does not exist, add new contestant
-          await contestantsRef.add({ name, voteCount: vote });
-        } else {
-          // If contestant exists, update vote count
-          snapshot.forEach((doc) => {
-            const contestantDocRef = contestantsRef.doc(doc.id);
-            contestantDocRef.update({
-              voteCount: doc.data().voteCount + vote,
-            });
-          });
-        }
-      } catch (error) {
-        console.error("Error updating contestant data:", error);
+      if (docSnapshot.exists()) {
+        const data = docSnapshot.data();
+        const newVoteCount = data.voteCount + votes;
+        await updateDoc(docRef, { voteCount: newVoteCount });
+        console.log(`Successfully updated votes for ${name}`);
+      } else {
+        await setDoc(docRef, { name, voteCount: votes });
+        console.log(`Added new contestant: ${name}`);
       }
-    };
 
-    const { name, vote } = parseUrlParams();
-    if (name) {
-      updateData({ name, vote });
+      navigate('/leaderboard');
+    } catch (error) {
+      console.error('Error updating contestant votes:', error);
     }
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  };
+
+  useEffect(() => {
+    const { name, votes } = parseUrlParams();
+    if (name) {
+      updateContestantVotes(name, votes);
+    }
+  }, []);
+
+  // Sort the contestants array in descending order based on voteCount
+  const sortedContestants = [...contestants].sort((a, b) => b.voteCount - a.voteCount);
 
   return (
-    <div className="grid grid-flow-row h-screen w-full mt-7">
-      <div className="grid grid-flow-col justify-evenly lg:justify-between mx-7">
+    <div className="grid grid-flow-row h-[fit-content] w-[95%] px-6 py-3 self-center mt-4">
+      <div className="grid grid-flow-col text-center items-center justify-between w-full p-2 mb-4">
         <h3>Contestant</h3>
         <h3>Votes</h3>
         <h3>Rank</h3>
       </div>
-      {contestants.map((item, index) => (
-        <div key={item.id} className="grid grid-flow-col gap-auto items-center justify-between mx-7 text-center">
-          <p className="m-0">{item.name}</p>
-          <p className="m-0">{item.voteCount}</p>
-          <p className="m-0">{index + 1}</p> {/* Simplistic ranking based on array order */}
-        </div>
-      ))}
+      {sortedContestants.length === 0 ? (
+        <p className="text-center mt-4">No votes yet. Be the first to vote!</p>
+      ) : (
+        sortedContestants.map((contestant, index) => (
+          <div key={contestant.id} className="grid grid-flow-col items-center text-center p-2 w-full justify-between ">
+            <p className="m-0 w-[20%]">{contestant.name}</p>
+            <p className="mx-auto w-[20%]">{contestant.voteCount}</p>
+            <p className="m-0 w-[20%]">{index + 1}</p>
+          </div>
+        ))
+      )}
+      <p className="text-start mt-10">Your votes will show up shortly! meanwhile, go vote more!</p>
     </div>
   );
 };

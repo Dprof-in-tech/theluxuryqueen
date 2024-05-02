@@ -1,5 +1,6 @@
 import React from "react";
 import About from "../images/about.png"
+import { Link } from "react-router-dom";
 
 function AboutSection() {
     return (
@@ -10,7 +11,10 @@ function AboutSection() {
                     <h2 className="text-[1.5rem] lg:max-w-[85%] font-semibold">We are the most prestigious beauty pageant in the whole of Nigeria
                         and we give you a stage to achieve your pageantry dreams. 
                     </h2>
-                    <button className="bg-black border-white border w-[50%] text-white px-4 py-2 rounded-lg mt-4">Register Now</button>
+                    <p className="text-[1.5rem] lg:max-w-[85%] font-semibold">Registrations closed!</p>
+                    <Link to="/contestants">
+                    <button className="bg-black border-white border w-[50%] text-white px-4 py-2 rounded-lg mt-4">Vote Now!</button>
+                    </Link>
                 </span>
                 <div className=" w-[90%] h-[360px] lg:w-[50%] lg:h-[500px]">
                     <img src={About} alt="What we do" className="w-full h-full object-cover" />

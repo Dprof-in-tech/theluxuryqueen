@@ -23,6 +23,7 @@ export default function Contact() {
                     <textarea name="" placeholder="Type your message here!" className="max-h-[35vh] min-h-[35vh] w-full md:w-[75%] max-w-full  md:max-w-[75%] text-black bg-gray-300 rounded-md px-4 py-4 placeholder:text-black" />
                     <input type="submit" value="Submit" className="h-[8vh] w-[8rem] text-white bg-black rounded-xl border-white border px-4 py-2" />
                 </form>
+                <h2 className="text-[1.2rem] text-white w-full md:max-w-[80%]">For faster correspondence, please send a message on whatsapp to +234-908765445</h2>
             </span>
         </section>
     );
