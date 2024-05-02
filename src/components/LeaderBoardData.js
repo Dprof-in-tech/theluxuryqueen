@@ -1,39 +1,64 @@
-import React, { useEffect } from "react";
-import { data } from "../components/contestantData";
+import React, { useEffect, useState } from "react";
+import { db } from "../firebase";
 
 const LeaderboardComponent = () => {
+  const [contestants, setContestants] = useState([]);
+
   useEffect(() => {
-    // Function to parse URL parameters
+    const fetchContestantData = async () => {
+      try {
+        const contestantsRef = db.collection("contestants");
+        const snapshot = await contestantsRef.get();
+
+        if (!snapshot.empty) {
+          const fetchedContestants = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setContestants(fetchedContestants);
+        } else {
+          console.log('No contestants found in Firestore.');
+        }
+      } catch (error) {
+        console.error('Error fetching contestants from Firestore:', error);
+      }
+    };
+
+    fetchContestantData();
+
     const parseUrlParams = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const name = urlParams.get("name");
-      const votes = parseInt(urlParams.get("votes"), 10) || 0; // Parse votes as integer
-      return { name, votes };
+      const vote = parseInt(urlParams.get("votes"), 10) || 0;
+      return { name, vote };
     };
 
-    // Function to update the data array based on URL parameters
-    const updateData = ({ name, votes }) => {
-      // Create a copy of the data array
-      const updatedData = [...data];
+    const updateData = async ({ name, vote }) => {
+      try {
+        const contestantsRef = db.collection("contestants");
+        const snapshot = await contestantsRef.where("name", "==", name).get();
 
-      // Find the contestant in the data array and update vote count
-      const contestantIndex = updatedData.findIndex((item) => item.name === name);
-      if (contestantIndex !== -1) {
-        updatedData[contestantIndex].voteCount += votes;
+        if (snapshot.empty) {
+          // If contestant does not exist, add new contestant
+          await contestantsRef.add({ name, voteCount: vote });
+        } else {
+          // If contestant exists, update vote count
+          snapshot.forEach((doc) => {
+            const contestantDocRef = contestantsRef.doc(doc.id);
+            contestantDocRef.update({
+              voteCount: doc.data().voteCount + vote,
+            });
+          });
+        }
+      } catch (error) {
+        console.error("Error updating contestant data:", error);
       }
-
-      // Assuming data is part of application state, update it globally
-      // For example, dispatch action to update data in Redux store
-      // This is just a demonstration, replace with your state management logic
-
-      console.log("Updated Data:", updatedData); // Log the updated data array
-
-      // Example: dispatch({ type: 'UPDATE_DATA', payload: updatedData });
     };
 
-    // Parse URL parameters and update data on component mount
-    const { name, votes } = parseUrlParams();
-    updateData({ name, votes });
+    const { name, vote } = parseUrlParams();
+    if (name) {
+      updateData({ name, vote });
+    }
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
   return (
@@ -43,11 +68,11 @@ const LeaderboardComponent = () => {
         <h3>Votes</h3>
         <h3>Rank</h3>
       </div>
-      {data.map((item, index) => (
-        <div key={index} className="grid grid-flow-col gap-auto items-center justify-between mx-7 text-center">
+      {contestants.map((item, index) => (
+        <div key={item.id} className="grid grid-flow-col gap-auto items-center justify-between mx-7 text-center">
           <p className="m-0">{item.name}</p>
           <p className="m-0">{item.voteCount}</p>
-          <p className="m-0">{item.rank}</p>
+          <p className="m-0">{index + 1}</p> {/* Simplistic ranking based on array order */}
         </div>
       ))}
     </div>
