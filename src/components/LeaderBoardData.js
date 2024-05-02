@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LeaderboardComponent = () => {
   const [contestants, setContestants] = useState([]);
+  const [loading, setLoading] = useState(true); // State to track loading status
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,8 +14,10 @@ const LeaderboardComponent = () => {
         const querySnapshot = await getDocs(collection(db, 'leaderboard'));
         const fetchedContestants = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setContestants(fetchedContestants);
+        setLoading(false); // Set loading to false after fetching data
       } catch (error) {
         console.error('Error fetching contestants:', error);
+        setLoading(false); // Set loading to false on error
       }
     };
 
@@ -57,7 +60,6 @@ const LeaderboardComponent = () => {
     }
   }, []);
 
-  // Sort the contestants array in descending order based on voteCount
   const sortedContestants = [...contestants].sort((a, b) => b.voteCount - a.voteCount);
 
   return (
@@ -67,18 +69,20 @@ const LeaderboardComponent = () => {
         <h3>Votes</h3>
         <h3>Rank</h3>
       </div>
-      {sortedContestants.length === 0 ? (
-        <p className="text-center mt-4">No votes yet. Be the first to vote!</p>
+      {loading ? (
+        <p className="text-center mt-4">Loading...</p>
+      ) : sortedContestants.length === 0 ? (
+        <p className="text-center mt-4">No votes yet. Go and vote for your favorite contestant!</p>
       ) : (
         sortedContestants.map((contestant, index) => (
-          <div key={contestant.id} className="grid grid-flow-col items-center text-center p-2 w-full justify-between ">
+          <div key={contestant.id} className="grid grid-flow-col items-center text-center p-2 w-full justify-between">
             <p className="m-0 w-[20%]">{contestant.name}</p>
             <p className="mx-auto w-[20%]">{contestant.voteCount}</p>
             <p className="m-0 w-[20%]">{index + 1}</p>
           </div>
         ))
       )}
-      <p className="text-start mt-10">Your votes will show up shortly! meanwhile, go vote more!</p>
+      <p className="text-start mt-10">Your votes will show up shortly! Meanwhile, go vote more!</p>
     </div>
   );
 };
