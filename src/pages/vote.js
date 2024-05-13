@@ -31,7 +31,7 @@ const Vote = () => {
             cname,
             phone,
         },
-        publicKey: 'pk_test_5dc6d58da9ce734e8be51296b612237ef3cf938e',
+        publicKey: 'pk_live_30fc49fd2bb51a9ca7940608fc7eefbecc95ddee',
         text: 'Vote Now',
         onSuccess: ({ reference }) => {
             // alert(
