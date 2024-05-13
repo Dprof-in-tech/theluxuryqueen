@@ -69,6 +69,7 @@ const Vote = () => {
                             type="text"
                             id="name"
                             value={cname}
+                            placeholder="Your Name Please"
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
@@ -79,6 +80,7 @@ const Vote = () => {
                             type="text"
                             id="email"
                             value={email}
+                            placeholder="Your Email Please"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
@@ -89,6 +91,7 @@ const Vote = () => {
                             type="text"
                             id="phone"
                             value={phone}
+                            placeholder="Your Phone Please"
                             onChange={(e) => setPhone(e.target.value)}
                         />
                     </div>
@@ -99,6 +102,7 @@ const Vote = () => {
                             type="text"
                             id="votes"
                             value={votes}
+                            placeholder="Number of votes"
                             onChange={(e) => setVotes(e.target.value)}
                         />
                     </div>
