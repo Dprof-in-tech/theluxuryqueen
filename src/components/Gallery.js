@@ -12,6 +12,7 @@ const GalleryComponent = ({ data }) => {
           <img
             src={item.picture}
             alt={`Contestant ${index + 1}`}
+            loading="lazy"
             className="w-full h-full border-white border rounded-xl"
           />
           <div className="absolute bottom-16 left-1 font-bold bg-black px-2 py-1 border rounded-md border-black">
