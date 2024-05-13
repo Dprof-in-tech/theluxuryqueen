@@ -7,16 +7,15 @@ const GalleryComponent = ({ data }) => {
       {data.map((item, index) => (
         <div
           key={index}
-          className="flex relative flex-col items-center gap-3 h-[500px] w-[380px] mb-8"
+          className="flex relative flex-col items-center justify-self-start gap-3 h-[500px] w-[380px] mb-8"
         >
           <img
             src={item.picture}
             alt={`Contestant ${index + 1}`}
             className="w-full h-full border-white border rounded-xl"
           />
-          <div className="absolute bottom-20 left-3 font-bold bg-black px-2 py-1 border rounded-md border-black">
+          <div className="absolute bottom-16 left-1 font-bold bg-black px-2 py-1 border rounded-md border-black">
             <p>{item.name}</p>
-            <p>{item.number}</p>
           </div>
           <Link
             to={{

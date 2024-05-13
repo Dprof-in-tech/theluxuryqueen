@@ -55,7 +55,7 @@ const Vote = () => {
                         src={picture}
                         alt={name}
                     />
-                    <div className="text-white absolute bottom-0 bg-black px-6 py-3">
+                    <div className="hidden text-white absolute bottom-0 bg-black px-6 py-3">
                         <p className="">{name}</p>
                         <p className="">NGN 100 / vote</p>
                         <p>Amount: {ramount}</p>

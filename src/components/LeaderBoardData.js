@@ -64,26 +64,36 @@ const LeaderboardComponent = () => {
   const sortedContestants = [...contestants].sort((a, b) => b.voteCount - a.voteCount);
 
   return (
-    <div className="grid grid-flow-row h-[fit-content] w-[95%] px-6 py-3 self-center mt-4">
-      <div className="grid grid-flow-col text-center items-center justify-between w-full p-2 mb-4">
-        <h3>Contestant</h3>
-        <h3>Votes</h3>
-        <h3>Rank</h3>
-      </div>
-      {loading ? (
-        <p className="text-center mt-4">Loading...</p>
-      ) : sortedContestants.length === 0 ? (
-        <p className="text-center mt-4">No votes yet. Go and vote for your favorite contestant!</p>
-      ) : (
-        sortedContestants.map((contestant, index) => (
-          <div key={contestant.id} className="grid grid-flow-col items-center text-center p-2 w-full justify-between">
-            <p className="m-0 w-[20%]">{contestant.name}</p>
-            <p className="mx-auto w-[20%]">{contestant.voteCount}</p>
-            <p className="m-0 w-[20%]">{index + 1}</p>
-          </div>
-        ))
-      )}
-      <p className="text-start mt-10">Your votes will show up shortly! Meanwhile, go vote more!</p>
+    <div className="grid grid-flow-row h-[fit-content] w-[85%] mx-auto px-6 py-3 items-start mt-4">
+      <table className="w-full border-collapse">
+        <thead>
+          <tr className="">
+            <th className="px-4 py-2 text-left">Contestant</th>
+            <th className="px-4 py-2 text-center">Votes</th>
+            <th className="px-4 py-2 text-center">Rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          {loading ? (
+            <tr>
+              <td colSpan="3" className="text-center py-4">Loading...</td>
+            </tr>
+          ) : sortedContestants.length === 0 ? (
+            <tr>
+              <td colSpan="3" className="text-center py-4">No votes yet. Go and vote for your favorite contestant!</td>
+            </tr>
+          ) : (
+            sortedContestants.map((contestant, index) => (
+              <tr key={contestant.id} className={index % 2 === 0 ? '' : ''}>
+                <td className="px-4 py-2">{contestant.name}</td>
+                <td className="px-4 py-2 text-center">{contestant.voteCount}</td>
+                <td className="px-4 py-2 text-center">{index + 1}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+      <p className="text-start mt-6 text-gray-300">Your votes will show up shortly! Meanwhile, go vote more!</p>
     </div>
   );
 };
