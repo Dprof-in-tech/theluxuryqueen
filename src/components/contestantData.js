@@ -1,4 +1,4 @@
-import Agbaeze_Comfort from '../images/Agbaeze-Comfort.jpg'; 
+import Agbaeze_Comfort from '../images/Agbaeze-Comfort.jpg';
 import Chikezie_Vivian from '../images/Chikezie-Vivian.jpg';
 import Dominic_Jennifer from '../images/Dominic-Jennifer.jpg';
 import Chukwu_Chidimma from '../images/Chukwu-Chidimma.jpg';
@@ -19,7 +19,7 @@ import Osita_Mary_Jane from '../images/Osita-Mary-Jane.jpg';
 import Ugwuoke_Favour from '../images/Ugwuoke-Favour.jpg';
 import Umezie_Ijeoma from '../images/Umezie-Ijeoma.jpg';
 import Edwin_Jessica from '../images/Edwin-Jessica.jpg';
-
+import Millicent_Chinecherem from '../images/Odo-Millicent.jpg';
 
 export const data = [
   {
@@ -36,12 +36,12 @@ export const data = [
     rank: 0,
     voteCount: 0,
   },
-  
+
   {
     picture: Chikezie_Vivian,
     button: "https://example.com/vote1",
     name: "Vivian",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -63,7 +63,7 @@ export const data = [
     picture: Esimoneze_Adaugo,
     button: "https://example.com/vote1",
     name: "Adaugo",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -71,7 +71,7 @@ export const data = [
     picture: Ewuzie_Ogechi,
     button: "https://example.com/vote1",
     name: "Ogechi",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -79,7 +79,7 @@ export const data = [
     picture: Ikeh_Cynthia,
     button: "https://example.com/vote1",
     name: "Cynthia",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -87,7 +87,7 @@ export const data = [
     picture: Mbachu_Chidiebube,
     button: "https://example.com/vote1",
     name: "Chidiebube",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -95,7 +95,7 @@ export const data = [
     picture: Nnadiegbunam_Emmanuella,
     button: "https://example.com/vote1",
     name: "Emmanuella",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -103,7 +103,7 @@ export const data = [
     picture: Nwaneri_Chinenye,
     button: "https://example.com/vote1",
     name: "Chinenye",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -111,7 +111,7 @@ export const data = [
     picture: Obelogu_Chioma,
     button: "https://example.com/vote1",
     name: "Chioma",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -119,7 +119,7 @@ export const data = [
     picture: Obieku_Chidimma,
     button: "https://example.com/vote1",
     name: "Chidimma",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -127,7 +127,7 @@ export const data = [
     picture: Obum_Naomi,
     button: "https://example.com/vote1",
     name: "Naomi",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -135,7 +135,7 @@ export const data = [
     picture: Ohagwu_Rejoice,
     button: "https://example.com/vote1",
     name: "Rejoice",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -143,7 +143,7 @@ export const data = [
     picture: Okogbuo_Franca,
     button: "https://example.com/vote1",
     name: "Franca",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -151,7 +151,7 @@ export const data = [
     picture: Oluedo_Munachimso,
     button: "https://example.com/vote1",
     name: "Munachimso",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -159,7 +159,7 @@ export const data = [
     picture: Onyeka_Vanessa,
     button: "https://example.com/vote1",
     name: "Vanessa",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -167,7 +167,7 @@ export const data = [
     picture: Osita_Mary_Jane,
     button: "https://example.com/vote1",
     name: "Mary Jane",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -175,7 +175,7 @@ export const data = [
     picture: Ugwuoke_Favour,
     button: "https://example.com/vote1",
     name: "Favour",
-  
+
     rank: 0,
     voteCount: 0,
   },
@@ -183,9 +183,16 @@ export const data = [
     picture: Umezie_Ijeoma,
     button: "https://example.com/vote1",
     name: "Ijeoma",
-  
+
     rank: 0,
     voteCount: 0,
-  }
+  },
+  {
+    picture: Millicent_Chinecherem,
+    button: "https://example.com/vote1",
+    name: "Millicent Chinecherem",
+    rank: 0,
+    voteCount: 0,
+  },
 
 ];
