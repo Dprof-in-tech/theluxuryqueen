@@ -1,9 +1,7 @@
 import Agbaeze_Comfort from '../images/Agbaeze-Comfort.jpg'; 
-import Anukwu_Jane from '../images/Anukwu-Jane.jpg';
 import Chikezie_Vivian from '../images/Chikezie-Vivian.jpg';
 import Dominic_Jennifer from '../images/Dominic-Jennifer.jpg';
 import Chukwu_Chidimma from '../images/Chukwu-Chidimma.jpg';
-import Ejianya_Favour from '../images/Ejianya-Favour.jpg';
 import Esimoneze_Adaugo from '../images/Esimoneze-Adaugo.jpg';
 import Ewuzie_Ogechi from '../images/Ewuzie-Ogechi.jpg';
 import Ikeh_Cynthia from '../images/Ikeh-Cynthia.jpg';
@@ -20,6 +18,7 @@ import Onyeka_Vanessa from '../images/Onyeka-Vanessa.jpg';
 import Osita_Mary_Jane from '../images/Osita-Mary-Jane.jpg';
 import Ugwuoke_Favour from '../images/Ugwuoke-Favour.jpg';
 import Umezie_Ijeoma from '../images/Umezie-Ijeoma.jpg';
+import Edwin_Jessica from '../images/Edwin-Jessica.jpg';
 
 
 export const data = [
@@ -31,12 +30,13 @@ export const data = [
     voteCount: 0,
   },
   {
-    picture: Anukwu_Jane,
+    picture: Edwin_Jessica,
     button: "https://example.com/vote1",
-    name: "Jane",
+    name: "Jessica",
     rank: 0,
     voteCount: 0,
   },
+  
   {
     picture: Chikezie_Vivian,
     button: "https://example.com/vote1",
@@ -56,14 +56,6 @@ export const data = [
     picture: Chukwu_Chidimma,
     button: "https://example.com/vote1",
     name: "Chidimma Anastasia",
-    rank: 0,
-    voteCount: 0,
-  },
-  {
-    picture: Ejianya_Favour,
-    button: "https://example.com/vote1",
-    name: "Favour",
-  
     rank: 0,
     voteCount: 0,
   },
